@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GP Melbourne 2019 !</title>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('f1.jpg');
+            background-size: cover;
+            font-family: 'Nova Mono', monospace;
+        }
+
+        li {
+            display: inline-block;
+            padding-right: 20px;
+            margin-left: 50px;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            transition: .5s;
+            padding-bottom: 10px;
+        }
+
+        a:hover {
+            border-bottom: 5px solid rgb(216, 0, 36);
+
+        }
+
+        h3 {
+            color: white;
+            text-align: right;
+            font-size: 16px;
+            margin-top: 10vh;
+            margin-right: 5vw;
+        }
+
+        .wrapper {
+            position: absolute;
+            right: 0;
+            bottom: 10%;
+            width: 100%;
+            height: 30vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            letter-spacing: 2px;
+            text-align: center;
+            padding-top: 2vh;
+            margin-bottom: 3vh;
+
+        }
+
+        span {
+            display: inline-block;
+            margin-right: 1vw;
+            text-align: center;
+            line-height: 10vh;
+            padding-left: 5vh;
+            padding-right: 5vh;
+            width: 8%;
+            height: 10vh;
+            background-color: #fff;
+            border-radius: 20%;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.39);
+            background-color: rgb(216, 0, 36);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        GP MELBOURNE -- 17 marca 2019 (05:10 GMT)
+    </h3>
+    <nav>
+        <ul>
+            <li><a href="melbourne.jpg">Mapa</a></li>
+            <li><a href="#">Historia</a></li>
+            <li><a href="#">Linki</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <h1>Do wyścigu w Melbourne pozostało:</h1>
+        <span id="day"></span> <span id="hours"></span>
+        <span id="mins"></span> <span id="seconds"></span>
+    </div>
+
+    <script>
+        setInterval(() => {
+            let actualTime = new Date().getTime();
+            let timeEnd = new Date("2019-03-17 05:10:00").getTime();
+            const day = Math.floor(
+                timeEnd / (1000 * 60 * 60 * 24) - actualTime / (1000 * 60 * 60 * 24)
+            );
+            const hours = Math.floor(
+                (timeEnd / (1000 * 60 * 60) - actualTime / (1000 * 60 * 60)) % 24
+            );
+            const mins = Math.floor(
+                (timeEnd / (1000 * 60) - actualTime / (1000 * 60)) % 60
+            );
+            const sec = Math.floor((timeEnd / 1000 - actualTime / 1000) % 60);
+
+            const spanDay = (document.getElementById("day").innerHTML =
+                day + " dni");
+            if (day == 1) {
+                document.getElementById("day").innerHTML = day + " dzien";
+            }
+            if (day == 0) {
+                document.getElementById("day").innerHTML = day + " dni";
+            }
+            const spanHours = (document.getElementById("hours").innerHTML =
+                hours + " godzin");
+            if (hours < 5) {
+                document.getElementById("hours").innerHTML = hours + " godziny";
+            }
+            if (hours == 1) {
+                document.getElementById("hours").innerHTML = hours + " godzina";
+            }
+            if (hours == 0) {
+                document.getElementById("hours").innerHTML = hours + " godzin";
+            }
+            const spanMins = (document.getElementById("mins").innerHTML =
+                mins + " minut");
+            if (mins < 5) {
+                document.getElementById("mins").innerHTML = mins + " minuty";
+            }
+            if (mins == 1) {
+                document.getElementById("mins").innerHTML = mins + " minuta";
+            }
+            if (mins == 0) {
+                document.getElementById("mins").innerHTML = mins + " minut";
+            }
+            const spanSec = (document.getElementById("seconds").innerHTML =
+                sec + " sekund");
+            if (sec < 5) {
+                document.getElementById("seconds").innerHTML = sec + " sekundy";
+            }
+            if (sec == 1) {
+                document.getElementById("seconds").innerHTML = sec + " sekunda";
+            }
+            if (sec == 0) {
+                document.getElementById("seconds").innerHTML = sec + " sekund";
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>
